@@ -175,7 +175,3 @@ insert into recita values (42,'DaCa');
 insert into recita values (62,'DaCa');
 insert into recita values(31,'STSI');
 insert into recita values (51, 'MaBi');
-
-select film.titolo, sale.nome
-from proiezioni join sale on proiezioni.codSala=sale.codSala join film on film.codFilm=proiezioni.codFilm
-order by film.titolo
