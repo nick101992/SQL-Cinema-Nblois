@@ -27,6 +27,9 @@ WHERE ((genere LIKE '%fantascienza%') AND (nazionalita = 'Giapponese' AND annopr
 
 /* Query 5 - I titoli dei film dello stesso regista di "Casablanca*/
 
+SELECT titolo
+FROM Film
+WHERE regista IN (SELECT regista FROM Film WHERE Titolo = 'Casablanca') 
 
 
 /* Query 6 - Il titolo ed il genere dei film proiettati il giorno di Natale 2004*/
