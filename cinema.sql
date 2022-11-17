@@ -80,6 +80,8 @@ create table sale(
 insert into sale values(1,100,'Antares','Roma');
 insert into sale values(2,150,'Odeon','Milano');
 insert into sale values(3,200,'Svev','Torino');
+insert into sale values(4,50,'Odeon2','Milano');
+insert into sale values(5,80,'Odeon3','Milano');
 
 create table proiezioni(
     codProiezione int primary key,
