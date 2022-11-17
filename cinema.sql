@@ -129,6 +129,7 @@ insert into proiezioni values (285,'STSI',3,654321,'2019-07-12');
 insert into Proiezioni values(124, 'GIBR', 2, 355000000, '2021-10-23');
 insert into proiezioni values(125, 'DaZa', 2, 3000, '2000-06-01');
 insert into proiezioni values (211, 'MaBi', 2, 88888, '2022-05-05');
+insert into proiezioni values (196, 'MaMa', 2, 1000, '2005-05-26');
 
 create table recita(
     codAttore int,

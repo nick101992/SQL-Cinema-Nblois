@@ -179,10 +179,25 @@ WHERE attori.annonascita < 1970
 
 
 /* Query 24 - Per ogni film di fantascienza, il titolo e l'incasso totale di tutte le sue proiezioni*/
+
+SELECT titolo, SUM(incasso) AS somma_incassi
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+WHERE genere LIKE '%_antascienza%'
+GROUP BY titolo
+
 /* Query 25 - Per ogni film di fantascienza, il titolo e l'incasso totale di tutte le sue proiezioni 
 successive al 01/01/2001*/
+
+SELECT titolo, SUM(incasso) AS somma_incassi
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+WHERE genere LIKE '%_antascienza%' AND Proiezioni.dataproiezione > '2001-01-01'
+GROUP BY titolo
+
+
 /* Query 26 - Per ogni film di fantascienza che non è mai stato proiettato prima del 01/01/2001
-il titolo e l'incasso totale di tutte le sue proiezioni */
+il titolo e l'incasso totale di tutte le sue proiezioni -  un film potrebbere essere stato proiettato
+il 17/12/2000 e il 03/01/2001 e non va selezionato*/
+
 /* Query 27 - Per ogni sala di Pisa, che nel mese di gennaio 2005 ha incassato più di 20000€, 
 il nome della sala e l'incasso totale (sempre del mese di gennaio 2005) */
 /* Query 28 - I titoli dei film che non sono mai stati proiettati a Pisa*/
