@@ -72,3 +72,6 @@ WHERE Attori.nome = 'Marcello Mastroianni' OR Attori.nome = 'Sofia Loren'
 SELECT titolo
 FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
           JOIN Attori ON Attori.codattore = Recita.codattore
+WHERE Attori.nome = 'Carrie-Anne Moss' OR Attori.nome = 'Guy Pearce'
+GROUP BY titolo
+HAVING COUNT(titolo)>1
