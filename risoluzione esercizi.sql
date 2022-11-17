@@ -75,3 +75,42 @@ FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
 WHERE Attori.nome = 'Carrie-Anne Moss' OR Attori.nome = 'Guy Pearce'
 GROUP BY titolo
 HAVING COUNT(titolo)>1
+
+
+/* Query 11 - Per ogni film in cui recita un attore francese, il titolo del film e il nome dell'attore*/
+
+SELECT titolo, Attori.nome
+FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
+          JOIN Attori ON Attori.codattore = Recita.codattore
+WHERE Attori.nazionalita = 'Statunitense'
+
+
+/* Query 12 - Per ogni film che è stato proiettato a Pisa 
+nel gennaio 2005, il titolo del film e il nome della sala*/
+
+
+SELECT titolo, sale.nome
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+          JOIN Sale ON Proiezioni.codsala = Sale.codsala
+WHERE Sale.citta = 'Pisa' AND Proiezioni.dataproiezione >= '2005-01-01' 
+      AND Proiezioni.dataproiezione <= '2005-01-31'
+
+/* Query 13 - Il numero di sale di Pisa con più di 60 posti*/
+
+
+
+
+/* Query 14 - Il numero totale di posti nelle sale di Pisa*/
+
+/* Query 15 - Per ogni città, il numero di sale*/
+
+/* Query 16 - Per ogni città, il numero di sale con più di 60 posti*/
+
+/* Query 17 - Per ogni regista, il numero di film diretti dopo il 1990*/
+
+/* Query 18 - Per ogni regista, l'incasso totale di tutte le proiezioni dei suoi film*/
+
+/* Query 19 - Per ogni film di S.Spielberg, il titolo del film, il numero totale di proiezioni a Pisa 
+e l'incasso totale*/
+
+/* Query 20 - Per ogni regista e per ogni attore, il numero di film del regista con l'attore
