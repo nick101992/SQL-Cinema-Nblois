@@ -144,4 +144,48 @@ WHERE regista='Steven Spielberg' AND Sale.citta = 'Pisa'
 GROUP BY titolo
 
 
-/* Query 20 - Per ogni regista e per ogni attore, il numero di film del regista con l'attore
+/* Query 20 - Per ogni regista e per ogni attore, il numero di film del regista con l'attore*/
+
+SELECT regista, attori.nome, COUNT(*) AS num_film
+FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
+          JOIN Attori ON Attori.codattore = Recita.codattore
+GROUP BY regista, attori.nome
+
+
+/* Query 21 - Il regista ed il titolo dei film in cui recitano meno di 6 attori*/
+
+SELECT regista, titolo, COUNT(*) AS num_attori
+FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
+          JOIN Attori ON Attori.codattore = Recita.codattore
+GROUP BY regista,titolo
+HAVING COUNT(*) < 6
+
+/* Query 22 - Per ogni film prodotto dopo il 2000, il codice, il titolo e 
+l'incasso totale di tutte le sue proiezioni*/
+
+SELECT codfilm, titolo, SUM(incasso) AS somma_incassi
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+WHERE annoproduzione > 2000
+GROUP BY titolo
+
+
+/* Query 23 - Il numero di attori dei film in cui appaiono solo attori nati prima del 1970*/
+
+
+SELECT COUNT(DISTINCT attori.nome)
+FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
+          JOIN Attori ON Attori.codattore = Recita.codattore
+WHERE attori.annonascita < 1970
+
+
+/* Query 24 - Per ogni film di fantascienza, il titolo e l'incasso totale di tutte le sue proiezioni*/
+/* Query 25 - Per ogni film di fantascienza, il titolo e l'incasso totale di tutte le sue proiezioni 
+successive al 01/01/2001*/
+/* Query 26 - Per ogni film di fantascienza che non è mai stato proiettato prima del 01/01/2001
+il titolo e l'incasso totale di tutte le sue proiezioni */
+/* Query 27 - Per ogni sala di Pisa, che nel mese di gennaio 2005 ha incassato più di 20000€, 
+il nome della sala e l'incasso totale (sempre del mese di gennaio 2005) */
+/* Query 28 - I titoli dei film che non sono mai stati proiettati a Pisa*/
+/* Query 29 - I titoli dei film che sono stati proiettati solo a Pisa*/
+/* Query 30 - I titoli dei film dei quali non vi è mai stata una proiezioni con incasso superiore
+a 500€ */
