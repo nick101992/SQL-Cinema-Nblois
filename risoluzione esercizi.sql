@@ -97,14 +97,29 @@ WHERE Sale.citta = 'Pisa' AND Proiezioni.dataproiezione >= '2005-01-01'
 
 /* Query 13 - Il numero di sale di Pisa con più di 60 posti*/
 
-
+SELECT COUNT(*) AS Num_Sale_Pisa
+FROM Sale
+WHERE Sale.posti > 60 AND Sale.citta = 'Pisa'
 
 
 /* Query 14 - Il numero totale di posti nelle sale di Pisa*/
 
+SELECT SUM(Sale.posti) AS num_tot_posti
+FROM Sale
+WHERE Sale.citta = 'Pisa'
+
 /* Query 15 - Per ogni città, il numero di sale*/
 
+SELECT citta, COUNT(*) AS Num_Sale
+FROM Sale
+GROUP BY citta
+
 /* Query 16 - Per ogni città, il numero di sale con più di 60 posti*/
+
+SELECT citta, COUNT(*) AS Num_Sale
+FROM Sale
+WHERE Sale.posti > 60
+GROUP BY citta
 
 /* Query 17 - Per ogni regista, il numero di film diretti dopo il 1990*/
 
