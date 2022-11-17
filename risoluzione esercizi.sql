@@ -33,8 +33,42 @@ WHERE regista IN (SELECT regista FROM Film WHERE Titolo = 'Casablanca')
 
 
 /* Query 6 - Il titolo ed il genere dei film proiettati il giorno di Natale 2004*/
+
+SELECT titolo, genere
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+WHERE Proiezioni.dataproiezione = '2004-12-25'
+
+
 /* Query 7 - Il titolo ed il genere dei film proiettati a Napoli il giorno di Natale 2004*/
+
+SELECT titolo, genere
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+          JOIN Sale ON Proiezioni.codsala = Sale.codsala
+WHERE Proiezioni.dataproiezione = '2004-12-25' AND Sale.citta = 'Napoli'
+
+
+
 /* Query 8 - Il nome delle sale di Napoli in cui il giorno di Natale 2004 è stato proiettato
 un film con R.Williams*/
+
+SELECT Sale.nome
+FROM Sale JOIN Proiezioni ON Proiezioni.codsala = Sale.codsala
+          JOIN Film ON Film.codfilm = Proiezioni.codfilm
+          JOIN Recita ON Recita.codfilm = Film.codfilm
+          JOIN Attori ON Attori.codattore = Recita.codattore
+WHERE Sale.citta = 'Napoli' AND Proiezioni.dataproiezione = '2004-12-25' AND Attori.nome = 'Robin Williams'
+
+
 /* Query 9 - Il titolo dei film in cui recita M. Mastroianni oppure S.Loren*/
+
+SELECT titolo
+FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
+          JOIN Attori ON Attori.codattore = Recita.codattore
+WHERE Attori.nome = 'Marcello Mastroianni' OR Attori.nome = 'Sofia Loren'
+
+
 /* Query 10 - Il titolo dei film in cui recitano M. Mastroianni e S.Loren*/
+
+SELECT titolo
+FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
+          JOIN Attori ON Attori.codattore = Recita.codattore
