@@ -123,9 +123,25 @@ GROUP BY citta
 
 /* Query 17 - Per ogni regista, il numero di film diretti dopo il 1990*/
 
+SELECT regista, COUNT(*) AS Num_film_diretti
+FROM Film
+WHERE annoproduzione > 1990
+GROUP BY regista
+
 /* Query 18 - Per ogni regista, l'incasso totale di tutte le proiezioni dei suoi film*/
+
+SELECT regista, SUM(incasso) AS totale_incasso
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+GROUP BY regista
 
 /* Query 19 - Per ogni film di S.Spielberg, il titolo del film, il numero totale di proiezioni a Pisa 
 e l'incasso totale*/
+
+SELECT titolo, COUNT(*) AS totale_proiezioni, SUM(incasso) AS somma_incassi
+FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
+          JOIN Sale ON Proiezioni.codsala = Sale.codsala
+WHERE regista='Steven Spielberg' AND Sale.citta = 'Pisa'
+GROUP BY titolo
+
 
 /* Query 20 - Per ogni regista e per ogni attore, il numero di film del regista con l'attore
