@@ -13,7 +13,7 @@ WHERE regista = 'Federico Fellini' AND annoproduzione > 1960
 
 SELECT titolo, durata
 FROM Film
-WHERE (LIKE '%Fantascienza%') AND (nazionalita = 'Giapponese' OR nazionalita = 'Francese')  
+WHERE (genere LIKE '%Fantascienza%') AND (nazionalita = 'Giapponese' OR nazionalita = 'Francese')  
     AND annoproduzione > 1990
 
 
@@ -21,7 +21,7 @@ WHERE (LIKE '%Fantascienza%') AND (nazionalita = 'Giapponese' OR nazionalita = '
 
 SELECT titolo
 FROM Film
-WHERE ((LIKE '%Fantascienza%') AND (nazionalita = 'Giapponese' AND annoproduzione > 1990))
+WHERE (((genere LIKE '%Fantascienza%') AND (nazionalita = 'Giapponese' AND annoproduzione > 1990))
      OR nazionalita = 'Francese'
 
 
