@@ -22,7 +22,7 @@ WHERE (genere LIKE '%Fantascienza%') AND (nazionalita = 'Giapponese' OR nazional
 SELECT titolo
 FROM Film
 WHERE (((genere LIKE '%Fantascienza%') AND (nazionalita = 'Giapponese' AND annoproduzione > 1990))
-     OR nazionalita = 'Francese'
+     OR nazionalita = 'Francese')
 
 
 /* Query 5 - I titoli dei film dello stesso regista di "Casablanca*/
@@ -156,11 +156,20 @@ GROUP BY regista, attori.nome
 
 /* Query 21 - Il regista ed il titolo dei film in cui recitano meno di 6 attori*/
 
+/*soluzione 1*/
 SELECT regista, titolo, COUNT(*) AS num_attori
 FROM Film JOIN Recita ON Recita.codfilm = Film.codfilm
           JOIN Attori ON Attori.codattore = Recita.codattore
 GROUP BY regista,titolo
 HAVING COUNT(*) < 6
+
+/*soluzione 2*/
+SELECT f.regista, f.titolo
+FROM Film f
+WHERE 6 > (SELECT COUNT(*) AS num_attori
+            FROM Recita r ON Recita.codfilm = Film.codfilm
+            WHERE f.codfilm = r.codfilm)
+
 
 /* Query 22 - Per ogni film prodotto dopo il 2000, il codice, il titolo e 
 l'incasso totale di tutte le sue proiezioni*/
@@ -225,7 +234,7 @@ SELECT titolo
 FROM Film 
 WHERE titolo NOT IN (SELECT titolo 
                     FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
-                    JOIN Sale ON Sale.codsala = Proiezioni.codsala
+                              JOIN Sale ON Sale.codsala = Proiezioni.codsala
                     WHERE Sale.citta = 'Pisa'
                     GROUP BY titolo)
 
@@ -235,7 +244,7 @@ SELECT titolo
 FROM Film 
 WHERE titolo NOT IN (SELECT titolo 
                     FROM Film JOIN Proiezioni ON Film.codfilm = Proiezioni.codfilm
-                    JOIN Sale ON Sale.codsala = Proiezioni.codsala
+                              JOIN Sale ON Sale.codsala = Proiezioni.codsala
                     WHERE Sale.citta <> 'Pisa'
                     GROUP BY titolo)
 
